@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VerifyCS = Bazile.Analyzers.Test.CSharpCodeFixVerifier<
-    Bazile.Analyzers.BazileAnalyzersAnalyzer,
+    Bazile.Analyzers.SingleDimensionZeroSizeArrayAnalyzer,
     Bazile.Analyzers.BazileAnalyzersCodeFixProvider>;
 
 namespace Bazile.Analyzers.Test

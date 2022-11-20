@@ -15,7 +15,7 @@ namespace Bazile.Analyzers
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(BazileAnalyzersCodeFixProvider)), Shared]
     public class BazileAnalyzersCodeFixProvider : CodeFixProvider
     {
-        public sealed override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(BazileAnalyzersAnalyzer.DiagnosticId);
+        public sealed override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(SingleDimensionZeroSizeArrayAnalyzer.DiagnosticId);
 
         public sealed override FixAllProvider GetFixAllProvider()
         {
