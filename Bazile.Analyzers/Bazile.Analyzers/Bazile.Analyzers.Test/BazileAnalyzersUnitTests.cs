@@ -9,51 +9,68 @@ namespace Bazile.Analyzers.Test
     [TestClass]
     public class BazileAnalyzersUnitTest
     {
-        //No diagnostics expected to show up
         [TestMethod]
-        public async Task TestMethod1()
+        public async Task SingleDimensionalArray_VerifyCodeFixAsync()
         {
-            var test = @"";
+            const string source = @"class Program { void Foo() {
+    int[] array = new int[0];
+}}";
 
-            await VerifyCS.VerifyAnalyzerAsync(test);
+            const string codeFix = @"int[] array = Array.Empty<int>(0)"; // what about usings?>
+
+            //var expected = VerifyCS.Diagnostic("BazileAnalyzers").WithLocation(0).WithArguments("TypeName");
+            var expected = VerifyCS.Diagnostic("SingleDimensionZeroSizeArray");
+            await VerifyCS.VerifyCodeFixAsync(source, expected, codeFix);
         }
 
-        //Diagnostic and CodeFix both triggered and checked for
         [TestMethod]
-        public async Task TestMethod2()
+        public async Task EmptySource_Is_Ignored()
         {
-            var test = @"
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Diagnostics;
+            const string source = "";
 
-    namespace ConsoleApplication1
-    {
-        class {|#0:TypeName|}
-        {   
+            await VerifyCS.VerifyAnalyzerAsync(source);
         }
-    }";
 
-            var fixtest = @"
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Diagnostics;
+        [TestMethod]
+        public async Task SingleDimensionalArray_WithConstSize_Is_Ignored() // ???
+        {
+            const string source = @"class Program { void Foo() {
+    const int size = 0;
+    int[] array = new int[size];
+}}";
 
-    namespace ConsoleApplication1
-    {
-        class TYPENAME
-        {   
+            await VerifyCS.VerifyAnalyzerAsync(source);
         }
-    }";
 
-            var expected = VerifyCS.Diagnostic("BazileAnalyzers").WithLocation(0).WithArguments("TypeName");
-            await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
+        [TestMethod]
+        public async Task SingleDimensionalArray_WithVariableSize_Is_Ignored()
+        {
+            const string source = @"class Program { void Foo() {
+    int size = int.Parse(System.Console.ReadLine());
+    int[] array = new int[size];
+}}";
+
+            await VerifyCS.VerifyAnalyzerAsync(source);
+        }
+
+        [TestMethod]
+        public async Task SingleDimensionalArray_WithNonZeroSize_Is_Ignored()
+        {
+            const string source = @"class Program { void Foo() {
+    int[] array = new int[5];
+}}";
+
+            await VerifyCS.VerifyAnalyzerAsync(source);
+        }
+
+        [TestMethod]
+        public async Task TwoDimensionalArray_Is_Ignored()
+        {
+            const string source = @"class Program { void Foo() {
+    int[,] array = new int[0,0];
+}}";
+
+            await VerifyCS.VerifyAnalyzerAsync(source);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Immutable;
-using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -11,6 +10,7 @@ namespace Bazile.Analyzers
     public class SingleDimensionZeroSizeArrayAnalyzer : DiagnosticAnalyzer
     {
         public const string DiagnosticId = "SingleDimensionZeroSizeArray";
+        //public const string DiagnosticId = "BazileAnalyzers";
 
         // You can change these strings in the Resources.resx file. If you do not want your analyzer to be localize-able, you can use regular strings for Title and MessageFormat.
         // See https://github.com/dotnet/roslyn/blob/main/docs/analyzers/Localizing%20Analyzers.md for more on localization
@@ -37,18 +37,12 @@ namespace Bazile.Analyzers
 
         private static void AnalyzeNode(SyntaxNodeAnalysisContext context)
         {
-            var x = (ArrayCreationExpressionSyntax)context.Node;
-            if (x.Type.RankSpecifiers.Count > 1) return;
-            if (x.Type.RankSpecifiers[0].Sizes[0] is not LiteralExpressionSyntax y) return;
-
-            //(NumericLiteral)y.Token
-            if (y.Token.Kind() == SyntaxKind.NumericLiteralToken) return;
-
-            int size = (int)y.Token.Value;
-            if (size != 0) return;
-
-            //var diagnostic = Diagnostic.Create(Rule, namedTypeSymbol.Locations[0], namedTypeSymbol.Name);
-            //context.ReportDiagnostic(diagnostic);
+            bool shouldReport = ShouldReport(context);
+            if (shouldReport)
+            {
+                //var diagnostic = Diagnostic.Create(Rule, namedTypeSymbol.Locations[0], namedTypeSymbol.Name);
+                //context.ReportDiagnostic(diagnostic);
+            }
         }
 
         //private static void AnalyzeSymbol(SymbolAnalysisContext context)
@@ -65,5 +59,23 @@ namespace Bazile.Analyzers
         //        context.ReportDiagnostic(diagnostic);
         //    }
         //}
+
+        private static bool ShouldReport(SyntaxNodeAnalysisContext context)
+        {
+            var arraySyntax = (ArrayCreationExpressionSyntax)context.Node;
+            var rankSpecifiers = arraySyntax.Type.RankSpecifiers;
+            var sizes = rankSpecifiers[0].Sizes;
+            if (
+                rankSpecifiers.Count > 1
+                || sizes.Count > 1
+                || sizes[0] is not LiteralExpressionSyntax rankLiteralSyntax
+                || rankLiteralSyntax.Token.Kind() != SyntaxKind.NumericLiteralToken)
+            {
+                return false;
+            }
+
+            int size = (int)rankLiteralSyntax.Token.Value;
+            return size == 0;
+        }
     }
 }
