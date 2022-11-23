@@ -62,20 +62,22 @@ namespace Bazile.Analyzers
 
         private static bool ShouldReport(SyntaxNodeAnalysisContext context)
         {
+            bool result = false;
+
             var arraySyntax = (ArrayCreationExpressionSyntax)context.Node;
             var rankSpecifiers = arraySyntax.Type.RankSpecifiers;
             var sizes = rankSpecifiers[0].Sizes;
             if (
-                rankSpecifiers.Count > 1
-                || sizes.Count > 1
-                || sizes[0] is not LiteralExpressionSyntax rankLiteralSyntax
-                || rankLiteralSyntax.Token.Kind() != SyntaxKind.NumericLiteralToken)
+                rankSpecifiers.Count == 1
+                && sizes.Count == 1
+                && sizes[0] is LiteralExpressionSyntax rankLiteralSyntax
+                && rankLiteralSyntax.Token.Kind() == SyntaxKind.NumericLiteralToken)
             {
-                return false;
+                int size = (int)rankLiteralSyntax.Token.Value;
+                result = size == 0;
             }
 
-            int size = (int)rankLiteralSyntax.Token.Value;
-            return size == 0;
+            return result;
         }
     }
 }
