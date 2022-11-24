@@ -3,15 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bazile.Analyzers", "Bazile.Analyzers\Bazile.Analyzers\Bazile.Analyzers.csproj", "{D1E56340-1C5D-4EB7-8BCC-5A710AD69CD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bazile.Analyzers", "Bazile.Analyzers\Bazile.Analyzers\Bazile.Analyzers.csproj", "{D1E56340-1C5D-4EB7-8BCC-5A710AD69CD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bazile.Analyzers.CodeFixes", "Bazile.Analyzers\Bazile.Analyzers.CodeFixes\Bazile.Analyzers.CodeFixes.csproj", "{212D2657-1969-480B-B9B6-DACE6CD7CABB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bazile.Analyzers.CodeFixes", "Bazile.Analyzers\Bazile.Analyzers.CodeFixes\Bazile.Analyzers.CodeFixes.csproj", "{212D2657-1969-480B-B9B6-DACE6CD7CABB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bazile.Analyzers.Package", "Bazile.Analyzers\Bazile.Analyzers.Package\Bazile.Analyzers.Package.csproj", "{81A86F74-278B-49BC-AFC7-4CE9B7B03533}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bazile.Analyzers.Package", "Bazile.Analyzers\Bazile.Analyzers.Package\Bazile.Analyzers.Package.csproj", "{81A86F74-278B-49BC-AFC7-4CE9B7B03533}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bazile.Analyzers.Test", "Bazile.Analyzers\Bazile.Analyzers.Test\Bazile.Analyzers.Test.csproj", "{5E4DD311-A709-4B95-B0D8-3DC274619089}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bazile.Analyzers.Test", "Bazile.Analyzers\Bazile.Analyzers.Test\Bazile.Analyzers.Test.csproj", "{5E4DD311-A709-4B95-B0D8-3DC274619089}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bazile.Analyzers.Vsix", "Bazile.Analyzers\Bazile.Analyzers.Vsix\Bazile.Analyzers.Vsix.csproj", "{CCA1064E-3EDE-440B-94DD-5A3A232E7659}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bazile.Analyzers.Vsix", "Bazile.Analyzers\Bazile.Analyzers.Vsix\Bazile.Analyzers.Vsix.csproj", "{CCA1064E-3EDE-440B-94DD-5A3A232E7659}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BC47BCC1-8743-47BB-9130-6CBA4700ED78}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
