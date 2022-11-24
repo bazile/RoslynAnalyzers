@@ -7,19 +7,54 @@ using VerifyCS = Bazile.Analyzers.Test.CSharpCodeFixVerifier<
 namespace Bazile.Analyzers.Test
 {
     [TestClass]
-    public class BazileAnalyzersUnitTest
+    public class SingleDimensionZeroSizeArrayAnalyzerTest
     {
         [TestMethod]
-        public async Task SingleDimensionalArray_VerifyCodeFixAsync()
+        public async Task SingleDimensionalArray01_VerifyCodeFixAsync()
         {
-            const string source = @"class Program { void Foo() {
+            const string source = @"using System; class Program { void Foo() {
     int[] array = new int[0];
 }}";
 
-            const string codeFix = @"int[] array = Array.Empty<int>(0)"; // what about usings?>
+            // TODO: what about usings?>
+            const string codeFix = @"using System; class Program { void Foo() {
+    int[] array = Array.Empty<int>();
+}}";
 
             //var expected = VerifyCS.Diagnostic("BazileAnalyzers").WithLocation(0).WithArguments("TypeName");
-            var expected = VerifyCS.Diagnostic("SingleDimensionZeroSizeArray");
+            var expected = VerifyCS.Diagnostic("SingleDimensionZeroSizeArray").WithSpan(2, 19, 2, 29);
+            await VerifyCS.VerifyCodeFixAsync(source, expected, codeFix);
+        }
+
+        [TestMethod]
+        public async Task SingleDimensionalArray02_VerifyCodeFixAsync()
+        {
+            const string source = @"using System; class Program { void Foo() {
+    var array = new int[0];
+}}";
+
+            const string codeFix = @"using System; class Program { void Foo() {
+    var array = Array.Empty<int>();
+}}"; // what about usings?>
+
+            //var expected = VerifyCS.Diagnostic("BazileAnalyzers").WithLocation(0).WithArguments("TypeName");
+            var expected = VerifyCS.Diagnostic("SingleDimensionZeroSizeArray").WithSpan(2, 17, 2, 27);
+            await VerifyCS.VerifyCodeFixAsync(source, expected, codeFix);
+        }
+
+        [TestMethod]
+        public async Task SingleDimensionalArray03_VerifyCodeFixAsync()
+        {
+            const string source = @"using System; class Program { void Foo(int[] array) {
+    Foo(new int[0]);
+}}";
+
+            const string codeFix = @"using System; class Program { void Foo(int[] array) {
+    Foo(Array.Empty<int>());
+}}";
+
+            //var expected = VerifyCS.Diagnostic("BazileAnalyzers").WithLocation(0).WithArguments("TypeName");
+            var expected = VerifyCS.Diagnostic("SingleDimensionZeroSizeArray").WithSpan(2, 9, 2, 19);
             await VerifyCS.VerifyCodeFixAsync(source, expected, codeFix);
         }
 
