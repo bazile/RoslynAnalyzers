@@ -43,22 +43,21 @@ public sealed class ObjectReturnTypeAnalyzer : DiagnosticAnalyzer
     private static bool ShouldReport(SyntaxNodeAnalysisContext context)
     {
         var methodSyntax = (MethodDeclarationSyntax)context.Node;
-        if (methodSyntax.ReturnType is PredefinedTypeSyntax predefinedTypeSyntax
-            && predefinedTypeSyntax.Keyword.Kind() == SyntaxKind.ObjectKeyword)
+        switch (methodSyntax.ReturnType)
         {
             // object keyword
-            return true;
-        }
-
-        // Object
-        if (methodSyntax.ReturnType is IdentifierNameSyntax { Identifier.Text: "Object" }) return true;
-
-        if (methodSyntax.ReturnType is QualifiedNameSyntax { 
+            case PredefinedTypeSyntax predefinedTypeSyntax 
+                when predefinedTypeSyntax.Keyword.Kind() == SyntaxKind.ObjectKeyword:
+            
+            // Object
+            case IdentifierNameSyntax { Identifier.Text: "Object" }:
+            
+            // System.Object
+            case QualifiedNameSyntax { 
                 Left: IdentifierNameSyntax { Identifier.Text: "System" },
                 Right: IdentifierNameSyntax { Identifier.Text: "Object" }
-            })
-        {
-            return true;
+            }:
+                return true;
         }
 
         return false;
