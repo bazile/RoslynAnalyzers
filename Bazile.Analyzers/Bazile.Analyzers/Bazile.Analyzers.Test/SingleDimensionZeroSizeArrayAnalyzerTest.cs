@@ -22,7 +22,7 @@ public class SingleDimensionZeroSizeArrayAnalyzerTest
 }}";
 
         //var expected = VerifyCS.Diagnostic("BazileAnalyzers").WithLocation(0).WithArguments("TypeName");
-        var expected = VerifyCS.Diagnostic("SingleDimensionZeroSizeArray").WithSpan(2, 19, 2, 29);
+        var expected = VerifyCS.Diagnostic(SingleDimensionZeroSizeArrayAnalyzer.DiagnosticId).WithSpan(2, 19, 2, 29);
         await VerifyCS.VerifyCodeFixAsync(source, expected, codeFix);
     }
 
@@ -38,7 +38,7 @@ public class SingleDimensionZeroSizeArrayAnalyzerTest
 }}"; // what about usings?>
 
         //var expected = VerifyCS.Diagnostic("BazileAnalyzers").WithLocation(0).WithArguments("TypeName");
-        var expected = VerifyCS.Diagnostic("SingleDimensionZeroSizeArray").WithSpan(2, 17, 2, 27);
+        var expected = VerifyCS.Diagnostic(SingleDimensionZeroSizeArrayAnalyzer.DiagnosticId).WithSpan(2, 17, 2, 27);
         await VerifyCS.VerifyCodeFixAsync(source, expected, codeFix);
     }
 
@@ -54,7 +54,7 @@ public class SingleDimensionZeroSizeArrayAnalyzerTest
 }}";
 
         //var expected = VerifyCS.Diagnostic("BazileAnalyzers").WithLocation(0).WithArguments("TypeName");
-        var expected = VerifyCS.Diagnostic("SingleDimensionZeroSizeArray").WithSpan(2, 9, 2, 19);
+        var expected = VerifyCS.Diagnostic(SingleDimensionZeroSizeArrayAnalyzer.DiagnosticId).WithSpan(2, 9, 2, 19);
         await VerifyCS.VerifyCodeFixAsync(source, expected, codeFix);
     }
 

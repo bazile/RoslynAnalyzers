@@ -117,15 +117,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AnalyzerDescription" xml:space="preserve">
+  <data name="ObjectReturnType_AnalyzerDescription" xml:space="preserve">
+    <value>DESCR: Do not return System.Object from method</value>
+    <comment>An optional longer localizable description of the diagnostic.</comment>
+  </data>
+  <data name="ObjectReturnType_AnalyzerMessageFormat" xml:space="preserve">
+    <value>MSG: Do not return System.Object from method</value>
+    <comment>The format-able message the diagnostic displays.</comment>
+  </data>
+  <data name="ObjectReturnType_AnalyzerTitle" xml:space="preserve">
+    <value>Do not return System.Object</value>
+    <comment>The title of the diagnostic.</comment>
+  </data>
+  <data name="SingleDimensionZeroSizeArray_AnalyzerDescription" xml:space="preserve">
     <value>DESCR: We should have used Array.Empty&lt;T&gt;</value>
     <comment>An optional longer localizable description of the diagnostic.</comment>
   </data>
-  <data name="AnalyzerMessageFormat" xml:space="preserve">
+  <data name="SingleDimensionZeroSizeArray_AnalyzerMessageFormat" xml:space="preserve">
     <value>MSG: We should have used Array.Empty&lt;T&gt;</value>
     <comment>The format-able message the diagnostic displays.</comment>
   </data>
-  <data name="AnalyzerTitle" xml:space="preserve">
+  <data name="SingleDimensionZeroSizeArray_AnalyzerTitle" xml:space="preserve">
     <value>Prefer Array.Empty&lt;T&gt;</value>
     <comment>The title of the diagnostic.</comment>
   </data>

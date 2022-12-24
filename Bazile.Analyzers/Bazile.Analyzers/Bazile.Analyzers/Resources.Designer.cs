@@ -61,29 +61,56 @@ namespace Bazile.Analyzers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DESCR: Do not return System.Object from method.
+        /// </summary>
+        internal static string ObjectReturnType_AnalyzerDescription {
+            get {
+                return ResourceManager.GetString("ObjectReturnType_AnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MSG: Do not return System.Object from method.
+        /// </summary>
+        internal static string ObjectReturnType_AnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("ObjectReturnType_AnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not return System.Object.
+        /// </summary>
+        internal static string ObjectReturnType_AnalyzerTitle {
+            get {
+                return ResourceManager.GetString("ObjectReturnType_AnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DESCR: We should have used Array.Empty&lt;T&gt;.
         /// </summary>
-        internal static string AnalyzerDescription {
+        internal static string SingleDimensionZeroSizeArray_AnalyzerDescription {
             get {
-                return ResourceManager.GetString("AnalyzerDescription", resourceCulture);
+                return ResourceManager.GetString("SingleDimensionZeroSizeArray_AnalyzerDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to MSG: We should have used Array.Empty&lt;T&gt;.
         /// </summary>
-        internal static string AnalyzerMessageFormat {
+        internal static string SingleDimensionZeroSizeArray_AnalyzerMessageFormat {
             get {
-                return ResourceManager.GetString("AnalyzerMessageFormat", resourceCulture);
+                return ResourceManager.GetString("SingleDimensionZeroSizeArray_AnalyzerMessageFormat", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Prefer Array.Empty&lt;T&gt;.
         /// </summary>
-        internal static string AnalyzerTitle {
+        internal static string SingleDimensionZeroSizeArray_AnalyzerTitle {
             get {
-                return ResourceManager.GetString("AnalyzerTitle", resourceCulture);
+                return ResourceManager.GetString("SingleDimensionZeroSizeArray_AnalyzerTitle", resourceCulture);
             }
         }
     }
