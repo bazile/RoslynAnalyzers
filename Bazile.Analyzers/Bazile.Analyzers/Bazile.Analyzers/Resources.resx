@@ -141,4 +141,13 @@
     <value>Prefer Array.Empty&lt;T&gt;</value>
     <comment>The title of the diagnostic.</comment>
   </data>
+  <data name="StringFormatToStringConcat_AnalyzerDescription" xml:space="preserve">
+    <value>string.Fomat can be replaced by string.Concat</value>
+  </data>
+  <data name="StringFormatToStringConcat_AnalyzerMessageFormat" xml:space="preserve">
+    <value>string.Fomat can be replaced by string.Concat</value>
+  </data>
+  <data name="StringFormatToStringConcat_AnalyzerTitle" xml:space="preserve">
+    <value>string.Fomat can be replaced by string.Concat</value>
+  </data>
 </root>

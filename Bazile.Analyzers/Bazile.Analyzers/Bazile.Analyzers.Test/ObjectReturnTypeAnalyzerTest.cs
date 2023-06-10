@@ -4,7 +4,6 @@ using VerifyCS = Bazile.Analyzers.Test.CSharpCodeFixVerifier<
     Bazile.Analyzers.ObjectReturnTypeAnalyzer,
     Bazile.Analyzers.BazileAnalyzersCodeFixProvider>;
 
-
 namespace Bazile.Analyzers.Test;
 
 [TestClass]

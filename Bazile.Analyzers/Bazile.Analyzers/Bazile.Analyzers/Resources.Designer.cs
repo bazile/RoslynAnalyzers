@@ -113,5 +113,32 @@ namespace Bazile.Analyzers {
                 return ResourceManager.GetString("SingleDimensionZeroSizeArray_AnalyzerTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to string.Fomat can be replaced by string.Concat.
+        /// </summary>
+        internal static string StringFormatToStringConcat_AnalyzerDescription {
+            get {
+                return ResourceManager.GetString("StringFormatToStringConcat_AnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to string.Fomat can be replaced by string.Concat.
+        /// </summary>
+        internal static string StringFormatToStringConcat_AnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("StringFormatToStringConcat_AnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to string.Fomat can be replaced by string.Concat.
+        /// </summary>
+        internal static string StringFormatToStringConcat_AnalyzerTitle {
+            get {
+                return ResourceManager.GetString("StringFormatToStringConcat_AnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }
